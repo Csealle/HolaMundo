@@ -1,0 +1,38 @@
+/* Variables de color para mantener el código limpio [cite: 19] */
+:root {
+    --principal: #4a148c; /* Violeta de Hello World */
+    --blanco: #ffffff;
+    --gris-claro: #f4f4f4;
+}
+
+/* Estilos base (Mobile First)  */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Navegación fluida [cite: 42] */
+nav {
+    background: var(--principal);
+    color: var(--blanco);
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+}
+
+/* Sección Hero con impacto visual  */
+.hero {
+    background: linear-gradient(rgba(74, 20, 140, 0.8), rgba(74, 20, 140, 0.8)), url('img/hero-bg.webp');
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--blanco);
+    padding: 20px;
+}
