@@ -1,38 +1,180 @@
-/* Variables de color para mantener el código limpio [cite: 19] */
+/* 1. VARIABLES Y CONFIGURACIÓN BAS*/
 :root {
-    --principal: #4a148c; /* Violeta de Hello World */
+    --principal: #4a148c;    /* Violeta de Hello World */
+    --acento: #00ff88;       /* Verde neón para botones (Wow Factor) [cite: 35] */
+    --oscuro: #121212;       /* Para fondos */
     --blanco: #ffffff;
-    --gris-claro: #f4f4f4;
+    --texto-gris: #d1d1d1;
+    --fuente-mono: 'Courier New', Courier, monospace; /* Estilo código */
 }
 
-/* Estilos base (Mobile First)  */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+* {
+    box-sizing: border-box;
     margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth; /* Navegación fluida  */
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     line-height: 1.6;
+    background-color: var(--blanco);
     color: #333;
 }
 
-/* Navegación fluida [cite: 42] */
-nav {
-    background: var(--principal);
-    color: var(--blanco);
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem;
+/*2. NAVEGACIÓN (HEADER)*/
+header {
+    background-color: var(--principal);
+    padding: 1rem 5%;
     position: sticky;
     top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
 
-/* Sección Hero con impacto visual  */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: var(--acento);
+    font-family: var(--fuente-mono);
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li a {
+    color: var(--blanco);
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: var(--acento);
+}
+
+/* 3. SECCIÓN HERO */
 .hero {
-    background: linear-gradient(rgba(74, 20, 140, 0.8), rgba(74, 20, 140, 0.8)), url('img/hero-bg.webp');
-    height: 60vh;
+    background: linear-gradient(rgba(18, 18, 18, 0.8), rgba(74, 20, 140, 0.6)), 
+                url('img/hero-bg.webp') no-repeat center center/cover;
+    height: 80vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     color: var(--blanco);
-    padding: 20px;
+    padding: 0 20px;
+}
+
+/* Efecto Máquina de Escribir  */
+.typewriter {
+    font-family: var(--fuente-mono);
+    font-size: 2.5rem;
+    overflow: hidden; 
+    border-right: .15em solid var(--acento); 
+    white-space: nowrap; 
+    margin: 0 auto; 
+    letter-spacing: .15em;
+    animation: typing 3.5s steps(30, end), blink-caret .75s step-end infinite;
+}
+
+@keyframes typing { from { width: 0 } to { width: 100% } }
+@keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: var(--acento) } }
+
+.hero p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 20px 0;
+}
+
+/* Botón CTA Neón [cite: 29, 31] */
+.btn-cta {
+    background-color: var(--acento);
+    color: var(--oscuro);
+    padding: 15px 35px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.4s ease;
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.2);
+}
+
+.btn-cta:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(0, 255, 136, 0.6);
+    background-color: var(--blanco);
+}
+
+/* 4. TARJETAS DE OBJETIVOS */
+#nosotros {
+    padding: 80px 10%;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+.grid-objetivos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive [cite: 40] */
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.card {
+    background: var(--blanco);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+    border-top: 5px solid var(--principal);
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card h3 {
+    color: var(--principal);
+    margin-bottom: 15px;
+}
+
+/* 5. RESPONSIVE DESIGN (MOBILE FIRST)
+   Adaptabilidad total a móviles [cite: 40, 46]) */
+
+   @media (max-width: 768px) {
+    .typewriter {
+        font-size: 1.5rem; /* Ajuste para pantallas pequeñas */
+        white-space: normal; /* Permite salto de línea en móvil */
+        border-right: none;
+        animation: none;
+    }
+    
+    nav ul {
+        display: none; /* Aquí podríamos agregar un menú hamburguesa */
+    }
+
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+}
+
+footer {
+    background: var(--oscuro);
+    color: var(--texto-gris);
+    text-align: center;
+    padding: 40px 0;
+    font-size: 0.8rem;
 }
