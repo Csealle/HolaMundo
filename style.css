@@ -1,14 +1,38 @@
-/* 1. VARIABLES Y CONFIGURACIÓN BAS*/
+/* 1. VARIABLES Y CONFIGURACIÓN BASE */
 :root {
-    /* NUEVA PALETA BASADA EN EL LOGO */
-    --principal: #2C3E50;      /* Gris Pizarra Oscuro (del logo) */
-    --acento: #00A8CC;         /* Cian Técnico para botones/enlaces */
-    
-    --oscuro: #1A2533;         /* Un tono más oscuro del principal */
-    --blanco: #ffffff;
-    --fondo-gris-suave: #F4F7F6; /* Fondo ligero y profesional */
+    /* MODO CLARO - NUEVA PALETA */
+    --principal: #0B1324;      /* Azul oscuro - Títulos */
+    --acento: #6C4CFF;         /* Morado - Botones */
+    --acento-hover: #8F7CFF;   /* Morado claro - Hover */
+    --oscuro: #1C355E;         /* Azul tecnológico - Header */
+    --blanco: #FFFFFF;
+    --fondo-gris-suave: #F7F9FC; /* Blanco suave - Fondo general */
     --texto-gris: #d1d1d1;
+    --texto-principal: #0B1324;  /* Azul oscuro */
+    --texto-secundario: #5A6473; /* Gris azulado */
+    --fondo-body: #F7F9FC;       /* Blanco suave */
+    --fondo-header: #1C355E;     /* Azul tecnológico */
+    --fondo-cards: #FFFFFF;      /* Blanco */
+    --fondo-seccion-alt: #FFFFFF;
+    --border-color: #E5E9F0;
     --fuente-mono: 'Courier New', Courier, monospace; /* Estilo código */
+}
+
+/* MODO OSCURO */
+[data-theme="dark"] {
+    --principal: #F1F5F9;      /* Texto principal claro */
+    --acento: #6C4CFF;         /* Morado tecnológico */
+    --oscuro: #121A33;         /* Azul oscuro para tarjetas */
+    --blanco: #F1F5F9;
+    --fondo-gris-suave: #121A33;
+    --texto-gris: #C3CAD5;
+    --texto-principal: #F1F5F9;
+    --texto-secundario: #C3CAD5;
+    --fondo-body: #0A0F1F;     /* Azul muy oscuro */
+    --fondo-header: #0F1730;   /* Azul profundo */
+    --fondo-cards: #121A33;    /* Azul oscuro */
+    --fondo-seccion-alt: #0F1730;
+    --border-color: #1A2440;
 }
 
 * {
@@ -24,20 +48,21 @@ html {
 body {
     font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     line-height: 1.6;
-    background-color: var(--blanco);
-    color: #333;
+    background-color: var(--fondo-body);
+    color: var(--texto-principal);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* 2. NAVEGACIÓN (HEADER) */
 header {
-    /* NUEVO: Fondo claro para logo oscuro */
-    background-color: var(--blanco);
+    background-color: var(--fondo-header);
     padding: 1rem 5%;
     position: sticky;
     top: 0;
     z-index: 1000;
-    border-bottom: 2px solid var(--fondo-gris-suave);
+    border-bottom: 2px solid var(--border-color);
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    transition: background-color 0.3s ease;
 }
 
 nav {
@@ -69,8 +94,7 @@ nav ul {
 }
 
 nav ul li a {
-    /* NUEVO: Texto oscuro para fondo claro */
-    color: var(--principal);
+    color: var(--blanco);
     text-decoration: none;
     margin-left: 20px;
     font-size: 0.9rem;
@@ -80,6 +104,31 @@ nav ul li a {
 
 nav ul li a:hover {
     color: var(--acento);
+}
+
+/* Botón de cambio de tema */
+.theme-toggle {
+    background: var(--acento);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--blanco);
+    font-weight: 600;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+    background-color: var(--acento-hover);
+}
+
+.theme-toggle:active {
+    transform: scale(0.95);
 }
 
 /* 3. SECCIÓN HERO */
@@ -118,29 +167,30 @@ nav ul li a:hover {
 }
 
 /* Botón CTA Neón [cite: 29, 31] */
+/* Botón CTA */
 .btn-cta {
     background-color: var(--acento);
-    color: var(--oscuro);
+    color: var(--blanco);
     padding: 15px 35px;
     border-radius: 50px;
     text-decoration: none;
     font-weight: bold;
     text-transform: uppercase;
     transition: all 0.4s ease;
-    box-shadow: 0 0 10px rgba(0, 255, 136, 0.2);
+    box-shadow: 0 0 10px rgba(108, 76, 255, 0.3);
 }
-
 .btn-cta:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 25px rgba(0, 255, 136, 0.6);
-    background-color: var(--blanco);
+    box-shadow: 0 0 25px rgba(108, 76, 255, 0.6);
+    background-color: var(--acento-hover);
 }
 
 /* 4. TARJETAS DE OBJETIVOS */
 #nosotros {
     padding: 80px 10%;
     text-align: center;
-    background-color: #f9f9f9;
+    background-color: var(--fondo-seccion-alt);
+    transition: background-color 0.3s ease;
 }
 
 .grid-objetivos {
@@ -151,12 +201,12 @@ nav ul li a:hover {
 }
 
 .card {
-    background: var(--blanco);
+    background: var(--fondo-cards);
     padding: 30px;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    transition: transform 0.3s ease;
-    border-top: 5px solid var(--principal);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    border-top: 5px solid var(--acento);
 }
 
 .card:hover {
@@ -164,7 +214,7 @@ nav ul li a:hover {
 }
 
 .card h3 {
-    color: var(--principal);
+    color: var(--texto-principal);
     margin-bottom: 15px;
 }
 
@@ -201,11 +251,12 @@ footer {
     background-color: var(--oscuro);
     color: var(--blanco);
     text-align: center;
+    transition: background-color 0.3s ease;
 }
 
 .registro-section p {
     margin-bottom: 30px;
-    color: var(--texto-gris);
+    color: var(--texto-secundario);
 }
 
 .registro-form {
@@ -234,10 +285,10 @@ footer {
 .input-group select {
     width: 100%;
     padding: 12px 15px;
-    border: 1px solid #444;
+    border: 1px solid var(--border-color);
     border-radius: 8px;
-    background-color: #222;
-    color: var(--blanco);
+    background-color: var(--fondo-cards);
+    color: var(--texto-principal);
     font-family: inherit;
     font-size: 1rem;
     transition: all 0.3s ease;
@@ -267,10 +318,11 @@ footer {
     padding: 80px 10%;
     background-color: var(--fondo-gris-suave);
     text-align: center;
+    transition: background-color 0.3s ease;
 }
 
 .equipo-section > p {
-    color: #555;
+    color: var(--texto-secundario);
     margin-bottom: 50px;
 }
 
@@ -282,7 +334,7 @@ footer {
 }
 
 .team-card {
-    background: var(--blanco);
+    background: var(--fondo-cards);
     border-radius: 20px;
     padding: 30px 20px;
     width: 100%;
@@ -338,7 +390,7 @@ footer {
 }
 
 .team-info h3 {
-    color: var(--principal);
+    color: var(--texto-principal);
     margin-bottom: 5px;
     font-size: 1.5rem;
 }
@@ -354,7 +406,7 @@ footer {
 
 .team-info p {
     font-size: 0.95rem;
-    color: #666;
+    color: var(--texto-secundario);
     margin-bottom: 20px;
     line-height: 1.5;
 }

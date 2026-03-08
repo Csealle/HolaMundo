@@ -18,6 +18,9 @@
             <li><a href="#nosotros">¿Quiénes somos?</a></li>
             <li><a href="#registro">Únete</a></li>
            </ul>
+           <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+               <span id="themeIcon">🌙</span>
+           </button>
         </nav>
     </header>
 
@@ -145,6 +148,49 @@
     <footer>
         <p>&copy; 2026 Club Hello World - FES Aragón, UNAM</p>
     </footer>
+
+    <script>
+        // Sistema de cambio de tema
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const html = document.documentElement;
+
+        // Cargar tema guardado o detectar preferencia del sistema
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const currentTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+
+        // Aplicar tema inicial
+        if (currentTheme === 'dark') {
+            html.setAttribute('data-theme', 'dark');
+            themeIcon.textContent = '☀️';
+        }
+
+        // Función para cambiar el tema
+        function toggleTheme() {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            // Cambiar icono
+            themeIcon.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+        }
+
+        // Event listener para el botón
+        themeToggle.addEventListener('click', toggleTheme);
+
+        // Manejo del formulario de registro
+        const registroForm = document.querySelector('.registro-form');
+        if (registroForm) {
+            registroForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('¡Gracias por tu interés! Pronto nos pondremos en contacto contigo.');
+                registroForm.reset();
+            });
+        }
+    </script>
 
 </body>
 </html>
