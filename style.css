@@ -16,6 +16,10 @@
     --fondo-seccion-alt: #FFFFFF;
     --border-color: #E5E9F0;
     --fuente-mono: 'Courier New', Courier, monospace; /* Estilo código */
+    
+    /* Fuentes */
+    --fuente-titulos: 'Space Grotesk', sans-serif;
+    --fuente-texto: 'Inter', sans-serif;
 }
 
 /* MODO OSCURO */
@@ -46,11 +50,71 @@ html {
 }
 
 body {
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-family: var(--fuente-texto);
+    font-size: 16px;
+    font-weight: 400;
     line-height: 1.6;
     background-color: var(--fondo-body);
     color: var(--texto-principal);
     transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* JERARQUÍA TIPOGRÁFICA */
+
+/* H1 — Título principal */
+h1 {
+    font-family: var(--fuente-titulos);
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 1.2;
+}
+
+/* H2 — Títulos de sección */
+h2 {
+    font-family: var(--fuente-titulos);
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 1.3;
+}
+
+/* H3 — Subtítulos */
+h3 {
+    font-family: var(--fuente-titulos);
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 1.35;
+}
+
+/* H4 — Títulos pequeños */
+h4 {
+    font-family: var(--fuente-titulos);
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 1.4;
+}
+
+/* Body — Texto principal */
+p {
+    font-family: var(--fuente-texto);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Body Small — Texto secundario */
+.text-small {
+    font-family: var(--fuente-texto);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* Caption — Texto pequeño */
+.caption, footer p {
+    font-family: var(--fuente-texto);
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.5;
 }
 
 /* 2. NAVEGACIÓN (HEADER) */
@@ -93,12 +157,15 @@ nav ul {
     list-style: none;
 }
 
+/* Navbar — Menú de navegación */
 nav ul li a {
+    font-family: var(--fuente-texto);
     color: var(--blanco);
     text-decoration: none;
     margin-left: 20px;
-    font-size: 0.9rem;
-    font-weight: 600;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.4;
     transition: color 0.3s;
 }
 
@@ -108,6 +175,7 @@ nav ul li a:hover {
 
 /* Botón de cambio de tema */
 .theme-toggle {
+    font-family: var(--fuente-texto);
     background: var(--acento);
     border: none;
     padding: 8px 16px;
@@ -119,7 +187,7 @@ nav ul li a:hover {
     align-items: center;
     gap: 5px;
     color: var(--blanco);
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .theme-toggle:hover {
@@ -147,7 +215,7 @@ nav ul li a:hover {
 
 /* Efecto Máquina de Escribir  */
 .typewriter {
-    font-family: var(--fuente-mono);
+    font-family: var(--fuente-titulos);
     font-size: 2.5rem;
     overflow: hidden; 
     border-right: .15em solid var(--acento); 
@@ -159,6 +227,7 @@ nav ul li a:hover {
 
 @keyframes typing { from { width: 0 } to { width: 100% } }
 @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: var(--acento) } }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
 .hero p {
     font-size: 1.2rem;
@@ -167,15 +236,19 @@ nav ul li a:hover {
 }
 
 /* Botón CTA Neón [cite: 29, 31] */
-/* Botón CTA */
+/* Botón CTA — Button Text */
 .btn-cta {
+    font-family: var(--fuente-texto);
     background-color: var(--acento);
     color: var(--blanco);
     padding: 15px 35px;
     border-radius: 50px;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.4;
     text-transform: uppercase;
+    letter-spacing: 0.5px;
     transition: all 0.4s ease;
     box-shadow: 0 0 10px rgba(108, 76, 255, 0.3);
 }
@@ -223,7 +296,7 @@ nav ul li a:hover {
 
    @media (max-width: 768px) {
     .typewriter {
-        font-size: 1.5rem; /* Ajuste para pantallas pequeñas */
+        font-size: 32px; /* Ajuste para pantallas pequeñas */
         white-space: normal; /* Permite salto de línea en móvil */
         border-right: none;
         animation: none;
@@ -275,22 +348,25 @@ footer {
 }
 
 .input-group label {
+    font-family: var(--fuente-texto);
     display: block;
     margin-bottom: 8px;
-    font-weight: 600;
+    font-weight: 500;
+    font-size: 14px;
     color: var(--acento);
 }
 
 .input-group input,
 .input-group select {
+    font-family: var(--fuente-texto);
     width: 100%;
     padding: 12px 15px;
     border: 1px solid var(--border-color);
     border-radius: 8px;
     background-color: var(--fondo-cards);
     color: var(--texto-principal);
-    font-family: inherit;
-    font-size: 1rem;
+    font-size: 16px;
+    font-weight: 400;
     transition: all 0.3s ease;
 }
 
@@ -396,12 +472,13 @@ footer {
 }
 
 .team-role {
+    font-family: var(--fuente-texto);
     color: var(--acento);
-    font-size: 0.9rem;
+    font-size: 14px;
+    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 15px;
-    font-weight: bold;
 }
 
 .team-info p {
@@ -428,10 +505,12 @@ footer {
 }
 
 .social-btn {
+    font-family: var(--fuente-texto);
     text-decoration: none;
     color: var(--oscuro);
-    font-weight: bold;
-    font-size: 0.85rem;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.4;
     padding: 8px 18px;
     border: 1px solid #ddd;
     border-radius: 20px;
@@ -442,4 +521,277 @@ footer {
     background-color: var(--acento);
     color: var(--blanco);
     border-color: var(--acento);
+}
+
+/* =========================================
+   8. SECCIÓN MURO - ESTILO PADLET
+   ========================================= */
+.muro-section {
+    padding: 80px 10%;
+    background-color: var(--fondo-body);
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.muro-section h2 {
+    margin-bottom: 10px;
+}
+
+.muro-section > p {
+    color: var(--texto-secundario);
+    margin-bottom: 50px;
+}
+
+.muro-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Formulario de nueva publicación */
+.nueva-publicacion {
+    background: var(--fondo-cards);
+    padding: 30px;
+    border-radius: 20px;
+    margin-bottom: 50px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    text-align: left;
+    border: 2px solid var(--acento);
+    transition: all 0.3s ease;
+}
+
+.nueva-publicacion h3 {
+    margin-bottom: 20px;
+    color: var(--texto-principal);
+    font-size: 24px;
+}
+
+.publicacion-form .input-group {
+    margin-bottom: 20px;
+}
+
+.publicacion-form input,
+.publicacion-form textarea {
+    font-family: var(--fuente-texto);
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background-color: var(--fondo-body);
+    color: var(--texto-principal);
+    font-size: 16px;
+    font-weight: 400;
+    transition: all 0.3s ease;
+    resize: vertical;
+}
+
+.publicacion-form input:focus,
+.publicacion-form textarea:focus {
+    outline: none;
+    border-color: var(--acento);
+    box-shadow: 0 0 10px rgba(108, 76, 255, 0.2);
+}
+
+.btn-publicar {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.btn-publicar {
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* Input de archivo personalizado */
+.file-upload-label {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--fondo-body);
+    border: 2px dashed var(--acento);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    width: 100%;
+    font-weight: 500;
+    color: var(--texto-principal);
+}
+
+.file-upload-label:hover {
+    background-color: var(--acento);
+    color: var(--blanco);
+    border-style: solid;
+}
+
+.file-input {
+    display: none;
+}
+
+/* Preview de imagen */
+.preview-container {
+    margin-top: 15px;
+}
+
+.image-preview {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 300px;
+}
+
+.image-preview img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.remove-image {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 0, 0, 0.8);
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.remove-image:hover {
+    background: rgba(255, 0, 0, 1);
+    transform: scale(1.1);
+}
+
+/* Imagen en la publicación */
+.post-image {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    margin: 10px 0;
+    object-fit: cover;
+    max-height: 300px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.post-image:hover {
+    transform: scale(1.02);
+    cursor: pointer;
+}
+
+/* Grid de publicaciones tipo Padlet */
+.grid-publicaciones {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+/* Tarjeta de publicación */
+.post-card {
+    background: var(--fondo-cards);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    text-align: left;
+    border-left: 4px solid var(--acento);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.post-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(108, 76, 255, 0.15);
+}
+
+/* Header de la publicación */
+.post-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.post-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--acento), var(--acento-hover));
+    color: var(--blanco);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.post-info h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--texto-principal);
+    margin: 0;
+}
+
+.post-date {
+    font-family: var(--fuente-texto);
+    font-size: 12px;
+    color: var(--texto-secundario);
+}
+
+/* Contenido de la publicación */
+.post-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--texto-principal);
+    margin: 0;
+}
+
+.post-content {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--texto-secundario);
+    margin: 0;
+}
+
+/* Tags de la publicación */
+.post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 5px;
+}
+
+.tag {
+    font-family: var(--fuente-texto);
+    background: var(--acento);
+    color: var(--blanco);
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.tag:hover {
+    background: var(--acento-hover);
+    transform: scale(1.05);
+}
+
+/* Responsive para muro */
+@media (max-width: 768px) {
+    .grid-publicaciones {
+        grid-template-columns: 1fr;
+    }
+    
+    .nueva-publicacion {
+        padding: 20px;
+    }
 }
