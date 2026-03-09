@@ -195,6 +195,7 @@ footer {
     padding: 40px 0;
     font-size: 0.8rem;
 }
+
 /* 6. SECCIÓN DE REGISTRO (GROWTH) */
 .registro-section {
     padding: 80px 10%;
@@ -217,6 +218,46 @@ footer {
     border: 1px solid rgba(255, 255, 255, 0.1);
     text-align: left;
     box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+/* Estilo unificado para TODOS los campos de Django */
+.registro-form input[type="text"],
+.registro-form input[type="email"],
+.registro-form select,
+.registro-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    margin-bottom: 20px;
+    background-color: #1a1a1a; 
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--blanco);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    display: block;
+    box-sizing: border-box; /* Evita que el padding ensanche el input */
+}
+
+/* Estilo específico para el área de texto (Carta de motivos) */
+.registro-form textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* Efecto focus para que se vea pro al escribir */
+.registro-form input:focus, 
+.registro-form select:focus, 
+.registro-form textarea:focus {
+    outline: none;
+    border-color: var(--primario); /* Usa el color turquesa de tu equipo */
+    box-shadow: 0 0 8px rgba(0, 243, 255, 0.3);
+}
+
+.input-group label {
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: var(--primario); /* O el color que usen para resaltar */
 }
 
 .input-group {
@@ -390,4 +431,57 @@ footer {
     background-color: var(--acento);
     color: var(--blanco);
     border-color: var(--acento);
+}
+
+
+/* ---- ESTILO PARA ALERTAS ----*/
+
+.messages-container {
+    margin-bottom: 20px;
+}
+
+.alert {
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-align: center;
+    animation: fadeIn 0.5s ease-in;
+}
+
+/* Color para Errores (Regex fallido o Spam) */
+.alert-error {
+    background-color: rgba(255, 0, 0, 0.1);
+    border: 1px solid #ff4444;
+    color: #ff4444;
+}
+
+/* Color para Éxito */
+.alert-success {
+    background-color: rgba(0, 243, 255, 0.1);
+    border: 1px solid var(--primario);
+    color: var(--primario);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* FIELD ERRORS */
+
+.field-error {
+    color: #ff4444; /* Rojo neón */
+    font-size: 0.8rem;
+    margin-top: -15px; /* Para que quede pegadito al input */
+    margin-bottom: 15px;
+    list-style: none;
+    font-weight: bold;
+}
+
+/* Para quitar las viñetas que pone Django por defecto en los errores */
+.field-error ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
 }

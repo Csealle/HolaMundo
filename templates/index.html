@@ -1,17 +1,18 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hello World - FES Aragón</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
 
     <header>
         <nav>
              <a href="index.html" class="logo-link">
-                <img src="img/logo-hw.png" alt="Logo Club Hello World FES Aragón" class="logo-img">
+                <img src="{% static 'img/logo-hw.png' %}" alt="Logo Club Hello World FES Aragón" class="logo-img">
              </a href="index.html" class="logo-link">
            <ul>
             <li><a href="#inicio">Inicio</a></li>
@@ -110,31 +111,85 @@
                 </div>
             </div>
         </section>
+
+<!-- SECCION FORMULARIO -->
+    
         <section id="registro" class="registro-section">
             <h2>Únete al Equipo</h2>
             <p>Impulsa tu carrera y prepárate para representar a la FES Aragón en los mejores hackatones.</p>
             
-            <form class="registro-form">
+            <!--MENSAJE DE ALERTA-->
+            {% if messages %}
+            <div class="messages-container">   
+                {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {% if exito %}
+            <div class="alert alert-success">
+                Pronto te enviaremos un correo sobre el estado de tu solicitud.
+            </div>
+            {% endif %}
+
+            <!--INICO DEL FORM-->
+            <form method="post" class="registro-form" id="form-registro">
+                {% csrf_token %}
+                
                 <div class="input-group">
-                    <label for="nombre">Nombre completo</label>
-                    <input type="text" id="nombre" name="nombre" required placeholder="Ej. Ada Lovelace">
+                    <label for="{{ form.nombre.id_for_label }}">Nombre(s)</label>
+                    {{ form.nombre }}
+                    {% if form.nombre.errors %}
+                        <div class="field-error">{{ form.nombre.errors }}</div>
+                    {% endif %}
                 </div>
                 
                 <div class="input-group">
-                    <label for="correo">Correo institucional</label>
-                    <input type="email" id="correo" name="correo" required placeholder="tu-correo@aragon.unam.mx">
+                    <label for="{{ form.apellidos.id_for_label }}">Apellidos</label>
+                    {{ form.apellidos }}
+                    {% if form.apellidos.errors %}
+                        <div class="field-error">{{ form.apellidos.errors }}</div>
+                    {% endif %}
+
+                </div>
+
+                <div class="input-group">
+                    <label for="{{ form.numero_cuenta.id_for_label }}">Número de cuenta UNAM</label>
+                    {{ form.numero_cuenta }}
+                    {% if form.numero_cuenta.errors %}
+                        <div class="field-error">{{ form.numero_cuenta.errors }}</div>
+                    {% endif %}
                 </div>
                 
                 <div class="input-group">
-                    <label for="carrera">Carrera</label>
-                    <select id="carrera" name="carrera" required>
-                        <option value="">Selecciona tu ingeniería...</option>
-                        <option value="computacion">Ingeniería en Computación</option>
-                        <option value="electrica">Ingeniería Eléctrica Electrónica</option>
-                        <option value="mecanica">Ingeniería Mecánica</option>
-                        <option value="industrial">Ingeniería Industrial</option>
-                        <option value="otra">Otra</option>
-                    </select>
+                    <label for="{{ form.email_institucional.id_for_label }}">Correo institucional</label>
+                    {{ form.email_institucional }}
+                    {% if form.email_institucional.errors %}
+                        <div class="field-error">{{ form.email_institucional.errors }}</div>
+                    {% endif %}
+                </div>
+                
+                <div class="input-group">
+                    <label for="{{ form.carrera.id_for_label }}">Carrera</label>
+                    {{ form.carrera }}
+                </div>
+
+                <div class="input-group" id="div-otra-carrera" style="display: none;">
+                    <label for="{{ form.otra_carrera.id_for_label }}">Especifica tu carrera</label>
+                    {{ form.otra_carrera }}
+                </div>
+
+                <div class="input-group">
+                    <label for="{{ form.carta_motivos.id_for_label }}">¿Por qué quieres unirte?</label>
+                    {{ form.carta_motivos }}
+                    {% if form.carta_motivos.errors %}
+                        <div class="field-error">
+                            {{ form.carta_motivos.errors }}
+                        </div>
+                    {% endif %}
                 </div>
 
                 <button type="submit" class="btn-cta">Enviar Solicitud</button>
@@ -145,6 +200,27 @@
     <footer>
         <p>&copy; 2026 Club Hello World - FES Aragón, UNAM</p>
     </footer>
+
+    <script>
+        // Esto asegura que el DOM esté listo
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            const carreraSelect = document.getElementById('id_carrera');
+            const divOtra = document.getElementById('div-otra-carrera');
+
+            // Verificamos que carreraSelect no sea null antes de seguir
+            if (carreraSelect && divOtra) {
+                carreraSelect.addEventListener('change', function() {
+                    // 'OTRA' debe coincidir con el valor en CARRERAS_CHOICES de tu models.py
+                    if (this.value === 'OTRA') {
+                        divOtra.style.display = 'block';
+                    } else {
+                        divOtra.style.display = 'none';
+                    }
+                });
+            }
+         });
+    </script>
 
 </body>
 </html>
