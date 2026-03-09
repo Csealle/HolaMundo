@@ -1404,3 +1404,30 @@ footer {
     margin: 0;
     list-style: none;
 }
+
+/* CALENDARIO */
+/* Mantiene el rectángulo estético */
+/* Forzamos el centrado de los títulos por si el CSS base los mueve a la izquierda */
+#calendario .text-center {
+    text-align: center !important;
+}
+
+.calendar-card {
+    position: relative;
+    padding-bottom: 70%; /* Ajusta este % para que sea más o menos alto */
+    height: 0;
+    overflow: hidden;
+    margin: 0 auto;
+    border-radius: 20px;
+    background-color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+}
+
+.calendar-card iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
