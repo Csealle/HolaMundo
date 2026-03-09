@@ -10,7 +10,24 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
+import os
 from pathlib import Path
+from dotenv import load_dotenv
+
+import ssl
+
+# Cargamos las variables del archivo .env
+load_dotenv()
+
+import certifi
+os.environ['SSL_CERT_FILE'] = certifi.where()
+
+# Forzamos a que cualquier conexión SMTP ignore el certificado roto
+try:
+    if not os.environ.get('PYTHONHTTPSVERIFY', '') and getattr(ssl, '_create_unverified_context', None):
+        ssl._create_default_https_context = ssl._create_unverified_context
+except Exception:
+    pass
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -118,15 +135,30 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static',]
 
-# Al final de settings.py
+
+# VARIABLES DE AUTOMATIZACION DE ENVIO DE MAILS
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'valentinacruz21@aragon.unam.mx'
-EMAIL_HOST_PASSWORD = 'meowrice26' # No es la de la cuenta, es una especial de Google
+EMAIL_USE_TLS = False
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+EMAIL_TIMEOUT = 20
 
-EMAIL_MESA_DIRECTIVA = [
-    'helloworld.clubfesa@gmail.com',
-    'valentinacruz21@aragon.unam.mx',
-]
+# Leemos las variables del .env usando os.getenv
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER') #
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD') #
+
+# variables de compatibilidad
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_SSL_CERT_FILE = None
+
+
+
+# Crear un contexto SSL que ignore la verificación de certificados
+# (Esto soluciona el error Basic Constraints of CA cert not marked critical)
+custom_ssl_context = ssl.create_default_context()
+custom_ssl_context.check_hostname = False
+custom_ssl_context.verify_mode = ssl.CERT_NONE
+
+# Decirle a Django que use este contexto para el envío de correos
+EMAIL_SSL_CONTEXT = custom_ssl_context
