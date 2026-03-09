@@ -12,13 +12,18 @@
     <header>
         <nav>
              <a href="index.html" class="logo-link">
-                <img src="{% static 'img/logo-hw.png' %}" alt="Logo Club Hello World FES Aragón" class="logo-img">
+                <img src="{% static 'img/logoHelloWorld.jpeg' %}" alt="Logo Club Hello World FES Aragón" class="logo-img">
              </a href="index.html" class="logo-link">
            <ul>
             <li><a href="#inicio">Inicio</a></li>
             <li><a href="#nosotros">¿Quiénes somos?</a></li>
+            <li><a href="#avisos">Avisos</a></li>
+            <li><a href="{% url 'muro' %}">Muro</a></li>
             <li><a href="#registro">Únete</a></li>
            </ul>
+           <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+               <span id="themeIcon">🌙</span>
+           </button>
         </nav>
     </header>
 
@@ -26,10 +31,63 @@
         <section id="inicio" class="hero">
             <h1 class="typewriter">¡Hola, Mundo!_</h1> 
             
-            <p>Formamos equipos de alto rendimiento para hackatones y desafíos de programación.</p>
-            
-            <a href="#registro" class="btn-cta">¡Quiero ser parte!</a>
+            <p class="hero-description">Formamos equipos de alto rendimiento para hackatones y desafíos de programación. Únete a la comunidad tech más innovadora de FES Aragón.</p>
+          
+            <a href="#registro" class="btn-cta">¡Quiero ser parte!
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
         </section>
+
+<!-- SECCIÓN MURO DE AVISOS - CARRUSEL -->
+        <section id="avisos" class="avisos-section">
+            <h2>Avisos y Próximos Eventos</h2>
+            <p>Mantente informado sobre nuestras actividades y convocatorias.</p>
+            
+            <div class="carousel-container">
+                <button class="carousel-btn carousel-btn-prev" aria-label="Anuncio anterior">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+                
+                <div class="carousel-wrapper">
+                    <div class="carousel-track">
+
+                        <div class="carousel-slide active">
+                            <img src="{% static 'img/logoHelloWorld.jpeg' %}" alt="Anuncio 1">
+                        </div>
+                        
+                        <div class="carousel-slide">
+                            <img src="{% static 'img/ejemploAnuncio2.jpeg' %}" alt="Anuncio 2">
+                        </div>
+                        
+                        <div class="carousel-slide">
+                            <img src="{% static 'img/ejemploAnuncio3.jpeg' %}" alt="Anuncio 3">
+                        </div>
+                        
+                        <div class="carousel-slide">
+                            <img src="{% static 'img/ejemploAnuncio.jpeg' %}" alt="Anuncio 4">
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="carousel-btn carousel-btn-next" aria-label="Siguiente anuncio">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Indicadores de slides -->
+            <div class="carousel-indicators">
+                <button class="indicator active" data-slide="0" aria-label="Ir al anuncio 1"></button>
+                <button class="indicator" data-slide="1" aria-label="Ir al anuncio 2"></button>
+                <button class="indicator" data-slide="2" aria-label="Ir al anuncio 3"></button>
+            </div>
+        </section>
+    
 <section id="equipo" class="equipo-section">
             <h2>Mesa Directiva</h2>
             <p>Los líderes detrás de Hello World. Cada cargo responde a necesidades específicas para asegurar el correcto desarrollo del club.</p>
@@ -37,68 +95,81 @@
             <div class="grid-equipo">
                 <div class="team-card">
                     <div class="team-img-wrapper">
-                        <div class="team-avatar">A</div>
+                        <div class="team-img-wrapper">
+                            <div class="team-avatar">
+                                <img src="{% static 'img/ana.jpeg' %}" alt="Ana Guadalupe Martinez Colón">
+                            </div>
+                        </div>
                     </div>
                     <div class="team-info">
                         <h3>Ana Guadalupe Martinez Colón</h3>
                         <h4 class="team-role">Presidenta</h4>
                         <p>Máxima representante del Club ante las autoridades académicas. Dirige el cumplimiento de objetivos y coordina las decisiones estratégicas institucionales.</p>
                         <div class="social-links">
-                            <a href="#" class="social-btn">LinkedIn</a>
+                            <a href="https://www.linkedin.com/in/ana-mart%C3%ADnez-12359331a/" class="social-btn" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="team-card">
                     <div class="team-img-wrapper">
-                        <div class="team-avatar">J</div>
+                        <div class="team-avatar">
+                            <img src="{% static 'img/sebas.jpeg' %}" alt="Jesús Sebastián Vázquez Zarco">
+                        </div>
                     </div>
                     <div class="team-info">
                         <h3>Jesús Sebastián Vázquez Zarco</h3>
                         <h4 class="team-role">Vicepresidente</h4>
                         <p>Apoya a la Presidencia coordinando la operación interna. Supervisa la ejecución de proyectos, tareas y apoya en la logística para garantizar la eficiencia.</p>
                         <div class="social-links">
-                            <a href="#" class="social-btn">GitHub</a>
+                            <a href="https://www.linkedin.com/in/jsebastianvz" class="social-btn" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="team-card">
                     <div class="team-img-wrapper">
-                        <div class="team-avatar">E</div>
+                        <div class="team-avatar">
+                            <img src="{% static 'img/cano.jpeg' %}" alt="Enrique Emiliano Cano García">
+                        </div>
                     </div>
                     <div class="team-info">
                         <h3>Enrique Emiliano Cano García</h3>
                         <h4 class="team-role">Secretario Técnico</h4>
                         <p>Responsable de las actividades formativas del club. Propone proyectos, coordina equipos de trabajo y brinda acompañamiento y mentoría académica a los miembros.</p>
                         <div class="social-links">
-                            <a href="#" class="social-btn">GitHub</a>
+                            <a href="https://www.linkedin.com/in/enrique-cano-garc%C3%ADa-2a3012227/" class="social-btn" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="team-card">
                     <div class="team-img-wrapper">
-                        <div class="team-avatar">E</div>
+                        <div class="team-avatar">
+                            <img src="{% static 'img/eric.jpeg' %}" alt="Eric Leonardo Rosales Sánchez">
+                        </div>
                     </div>
                     <div class="team-info">
                         <h3>Eric Leonardo Rosales Sánchez</h3>
                         <h4 class="team-role">Director de Estrategia y Planeación</h4>
                         <p>Diseña la planificación semestral y evalúa el impacto de las actividades. Elabora planes de trabajo e impulsa el crecimiento institucional a largo plazo.</p>
                         <div class="social-links">
-                            <a href="#" class="social-btn">LinkedIn</a>
+                            <a href="https://www.linkedin.com/in/eric-leonardo-rosales-sanchez-63a53b2a3/" class="social-btn" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
+<!-- SECCION NOSOTROS -->
+
         <section id="nosotros">
             <h2>Nuestra Visión</h2>
             <p>Ser un referente nacional e internacional en competencias tecnológicas.</p>
 
             <div class="grid-objetivos">
                 <div class="card">
-                    <h3>Habilidades Técnicas</h3>
+                    <h3>Habilidades Técnicas </h3>
                     <p>Talleres de IA, desarrollo de software y diseño.</p>
                 </div>
                 <div class="card">
@@ -199,7 +270,10 @@
 
     <footer>
         <p>&copy; 2026 Club Hello World - FES Aragón, UNAM</p>
+        <p>Contáctanos en nuestro correo: <a href="mailto:helloworld.clubfesa@gmail.com">helloworld.clubfesa@gmail.com</a></p>
     </footer>
+
+
 
     <script>
         // Esto asegura que el DOM esté listo
@@ -220,6 +294,133 @@
                 });
             }
          });
+        
+        // Sistema de cambio de tema
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const html = document.documentElement;
+
+        // Cargar tema guardado o detectar preferencia del sistema
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const currentTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+
+        // Aplicar tema inicial siempre
+        html.setAttribute('data-theme', currentTheme);
+        
+        if (currentTheme === 'dark') {
+            themeIcon.textContent = '☀︎';
+        } else {
+            themeIcon.textContent = '☪︎';
+        }
+
+        // Función para cambiar el tema
+        function toggleTheme() {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            // Cambiar icono
+            themeIcon.textContent = newTheme === 'dark' ? '☀︎' : '☪︎';
+        }
+
+        // Event listener para el botón
+        themeToggle.addEventListener('click', toggleTheme);
+
+        // Detectar si estamos en la sección hero para hacer el header transparente
+        const heroSection = document.querySelector('.hero');
+        
+        function checkHeroVisibility() {
+            if (heroSection) {
+                const heroRect = heroSection.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                
+                // Si el hero está visible (cualquier parte del hero está en la pantalla)
+                // O si estamos en la parte superior de la página
+                if ((heroRect.top < windowHeight && heroRect.bottom > 0) || window.scrollY < heroRect.height) {
+                    document.body.classList.add('hero-active');
+                } else {
+                    document.body.classList.remove('hero-active');
+                }
+            }
+        }
+        
+        // Verificar al cargar la página y al hacer scroll
+        checkHeroVisibility();
+        window.addEventListener('scroll', checkHeroVisibility);
+        window.addEventListener('resize', checkHeroVisibility);
+
+        // ========== CARRUSEL DE AVISOS ==========
+        const track = document.querySelector('.carousel-track');
+        const slides = Array.from(track.children);
+        const nextButton = document.querySelector('.carousel-btn-next');
+        const prevButton = document.querySelector('.carousel-btn-prev');
+        const indicators = document.querySelectorAll('.indicator');
+        
+        let currentIndex = 0;
+        const totalSlides = slides.length;
+
+        // Función para mover al slide específico
+        function moveToSlide(index) {
+            if (index < 0) index = totalSlides - 1;
+            if (index >= totalSlides) index = 0;
+            
+            currentIndex = index;
+            const movePercentage = currentIndex * -100;
+            track.style.transform = `translateX(${movePercentage}%)`;
+            
+            // Actualizar indicadores
+            indicators.forEach((indicator, i) => {
+                indicator.classList.toggle('active', i === currentIndex);
+            });
+            
+            // Actualizar slides
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === currentIndex);
+            });
+        }
+
+        // Botón siguiente
+        nextButton.addEventListener('click', () => {
+            moveToSlide(currentIndex + 1);
+        });
+
+        // Botón anterior
+        prevButton.addEventListener('click', () => {
+            moveToSlide(currentIndex - 1);
+        });
+
+        // Indicadores
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                moveToSlide(index);
+            });
+        });
+
+        // Auto-play (opcional, cada 5 segundos)
+        let autoplayInterval = setInterval(() => {
+            moveToSlide(currentIndex + 1);
+        }, 5000);
+
+        // Pausar auto-play al hacer hover
+        const carouselContainer = document.querySelector('.carousel-container');
+        carouselContainer.addEventListener('mouseenter', () => {
+            clearInterval(autoplayInterval);
+        });
+
+        carouselContainer.addEventListener('mouseleave', () => {
+            autoplayInterval = setInterval(() => {
+                moveToSlide(currentIndex + 1);
+            }, 5000);
+        });
+
+        // Soporte para deslizar con teclado
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') moveToSlide(currentIndex - 1);
+            if (e.key === 'ArrowRight') moveToSlide(currentIndex + 1);
+        });
     </script>
 
     <script>

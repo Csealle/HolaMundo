@@ -6,6 +6,9 @@ from django.core.mail import send_mail, get_connection
 from django.conf import settings
 from .forms import FormularioRegistro
 
+def muro(request):
+    return render(request, 'muro.html')
+
 def index(request):
     if request.method == 'POST':
         # 1. Rate Limiting (Evitar Spam)
