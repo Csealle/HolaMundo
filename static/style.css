@@ -11,7 +11,7 @@
     --texto-principal: #1E293B;  /* Azul oscuro */
     --texto-secundario: #475569; /* Gris azulado */
     --fondo-body: #ECEFF9;       /* Azul claro suave - Fondo body */
-    --fondo-header: rgba(179, 196, 253, 0.95); /* Azul claro semi-transparente */
+    --fondo-header: rgba(244, 247, 255, 0.95); /* Azul claro semi-transparente */
     --fondo-cards: #FFFFFF;      /* Blanco - Cards */
     --fondo-seccion-alt: #ECEFF9;
     --border-color: #D4D9E8;
@@ -27,7 +27,7 @@
     --principal: #F1F5F9;      /* Texto principal claro */
     --acento: #6C4CFF;         /* Morado tecnológico */
     --acento-hover: #8F7CFF;   /* Morado claro */
-    --oscuro: #121A33;         /* Azul oscuro para tarjetas */
+    --oscuro: #131d3a;         /* Azul oscuro para tarjetas */
     --blanco: #F1F5F9;
     --fondo-gris-suave: #121A33;
     --texto-gris: #C3CAD5;
@@ -35,7 +35,7 @@
     --texto-secundario: #C3CAD5;
     --fondo-body: #0A0F1F;     /* Azul muy oscuro */
     --fondo-header: rgba(15, 23, 48, 0.9);   /* Semi-transparente */
-    --fondo-cards: #121A33;    /* Azul oscuro */
+    --fondo-cards:  rgb(15, 23, 48);     /* Azul oscuro */
     --fondo-seccion-alt: #0F1730;
     --border-color: rgba(255, 255, 255, 0.1);
 }
@@ -180,29 +180,30 @@ nav ul li a {
     line-height: 1.4;
     padding: 8px 16px;
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(30, 41, 59, 0.774);
     backdrop-filter: blur(10px);
     transition: all 0.3s ease;
+    border: 1px solid rgba(30, 41, 59, 0.2);
 }
 
 /* Enlaces de navegación en modo claro */
 [data-theme="light"] nav ul li a {
-    color: #1E293B;
-    background: rgba(30, 41, 59, 0.12);
+    color: #1E293B !important;
+    background: rgba(148, 163, 184, 0.2) !important;
     border: 1px solid rgba(30, 41, 59, 0.2);
 }
 
 /* Enlaces cuando el header está sobre el hero */
 .hero-active nav ul li a {
     color: var(--blanco);
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(30, 41, 59, 0.774);
+    border: 1px solid rgba(30, 41, 59, 0.2);
 }
 
 .hero-active [data-theme="light"] nav ul li a {
-    color: var(--blanco);
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #1E293B !important;
+    background: rgba(148, 163, 184, 0.2) !important;
+    border: 1px solid rgba(30, 41, 59, 0.2);
 }
 
 nav ul li a:hover {
@@ -212,11 +213,11 @@ nav ul li a:hover {
 }
 
 nav ul li a:first-child {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.25);
 }
 
 [data-theme="light"] nav ul li a:first-child {
-    background: rgba(30, 41, 59, 0.15);
+    background: rgba(148, 163, 184, 0.3) !important;
     font-weight: 600;
 }
 
@@ -225,7 +226,7 @@ nav ul li a:first-child {
 }
 
 .hero-active [data-theme="light"] nav ul li a:first-child {
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(148, 163, 184, 0.3) !important;
     font-weight: 600;
 }
 
@@ -573,11 +574,26 @@ nav ul li a:first-child {
 }
 
 footer {
-    background: var(--oscuro);
+    background: var(--fondo-header);
     color: var(--texto-gris);
     text-align: center;
     padding: 40px 0;
     font-size: 0.8rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Footer en modo claro */
+[data-theme="light"] footer {
+    background: var(--fondo-header);
+    color: var(--texto-secundario);
+}
+
+[data-theme="light"] footer a {
+    color: var(--acento);
+}
+
+[data-theme="light"] footer a:hover {
+    color: var(--acento-hover);
 }
 
 /* 6. SECCIÓN MURO DE AVISOS - CARRUSEL */
@@ -941,6 +957,19 @@ footer {
 }
 
 .social-btn {
+    font-family: var(--fuente-texto);
+    text-decoration: none;
+    color: var(--blanco);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.4;
+    padding: 8px 18px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    transition: all 0.3s;
+}
+
+[data-theme="light"] .social-btn {
     font-family: var(--fuente-texto);
     text-decoration: none;
     color: var(--oscuro);
