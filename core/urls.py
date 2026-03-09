@@ -16,9 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from miembros.views import index  # Asegúrate de que 'miembros' sea el nombre de tu app
+from miembros.views import index, muro  # Asegúrate de que 'miembros' sea el nombre de tu app
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index, name='index'), 
+    path('', index, name='index'),
+    path('muro/', muro, name='muro'),
 ]

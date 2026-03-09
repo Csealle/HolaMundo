@@ -1,16 +1,44 @@
 /* 1. VARIABLES Y CONFIGURACIÓN BAS*/
 :root {
-    /* NUEVA PALETA BASADA EN EL LOGO */
-    --principal: #2C3E50;      /* Gris Pizarra Oscuro (del logo) */
-    --acento: #00A8CC;         /* Cian Técnico para botones/enlaces */
+    /* MODO CLARO - PALETA CON FONDO BLANCO */
+    --principal: #1E293B;      /* Azul oscuro - Títulos en modo claro */
+    --acento: #6C4CFF;         /* Morado - Botones */
+    --acento-hover: #8F7CFF;   /* Morado claro - Hover */
+    --oscuro: #1C355E;         /* Azul oscuro - Sección registro */
+    --blanco: #FFFFFF;
+    --fondo-gris-suave: #ECEFF9; /* Azul claro suave - Fondo secciones */
+    --texto-gris: #64748B;
+    --texto-principal: #1E293B;  /* Azul oscuro */
+    --texto-secundario: #475569; /* Gris azulado */
+    --fondo-body: #ECEFF9;       /* Azul claro suave - Fondo body */
+    --fondo-header: rgba(179, 196, 253, 0.95); /* Azul claro semi-transparente */
+    --fondo-cards: #FFFFFF;      /* Blanco - Cards */
+    --fondo-seccion-alt: #ECEFF9;
+    --border-color: #D4D9E8;
+    --fuente-mono: 'Courier New', Courier, monospace;
     
-    --oscuro: #1A2533;         /* Un tono más oscuro del principal */
-    --blanco: #ffffff;
-    --fondo-gris-suave: #F4F7F6; /* Fondo ligero y profesional */
-    --texto-gris: #d1d1d1;
-    --fuente-mono: 'Courier New', Courier, monospace; /* Estilo código */
+    /* Fuentes */
+    --fuente-titulos: 'Space Grotesk', sans-serif;
+    --fuente-texto: 'Inter', sans-serif;
 }
 
+/* MODO OSCURO */
+[data-theme="dark"] {
+    --principal: #F1F5F9;      /* Texto principal claro */
+    --acento: #6C4CFF;         /* Morado tecnológico */
+    --acento-hover: #8F7CFF;   /* Morado claro */
+    --oscuro: #121A33;         /* Azul oscuro para tarjetas */
+    --blanco: #F1F5F9;
+    --fondo-gris-suave: #121A33;
+    --texto-gris: #C3CAD5;
+    --texto-principal: #F1F5F9;
+    --texto-secundario: #C3CAD5;
+    --fondo-body: #0A0F1F;     /* Azul muy oscuro */
+    --fondo-header: rgba(15, 23, 48, 0.9);   /* Semi-transparente */
+    --fondo-cards: #121A33;    /* Azul oscuro */
+    --fondo-seccion-alt: #0F1730;
+    --border-color: rgba(255, 255, 255, 0.1);
+}
 * {
     box-sizing: border-box;
     margin: 0;
@@ -22,28 +50,102 @@ html {
 }
 
 body {
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-family: var(--fuente-texto);
+    font-size: 16px;
+    font-weight: 400;
     line-height: 1.6;
-    background-color: var(--blanco);
-    color: #333;
+    background-color: var(--fondo-body);
+    color: var(--texto-principal);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+* JERARQUÍA TIPOGRÁFICA */
+
+/* H1 — Título principal */
+h1 {
+    font-family: var(--fuente-titulos);
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 1.2;
+}
+
+/* H2 — Títulos de sección */
+h2 {
+    font-family: var(--fuente-titulos);
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 1.3;
+}
+
+/* H3 — Subtítulos */
+h3 {
+    font-family: var(--fuente-titulos);
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 1.35;
+}
+
+/* H4 — Títulos pequeños */
+h4 {
+    font-family: var(--fuente-titulos);
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 1.4;
+}
+
+/* Body — Texto principal */
+p {
+    font-family: var(--fuente-texto);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Body Small — Texto secundario */
+.text-small {
+    font-family: var(--fuente-texto);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* Caption — Texto pequeño */
+.caption, footer p {
+    font-family: var(--fuente-texto);
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.5;
 }
 
 /* 2. NAVEGACIÓN (HEADER) */
 header {
-    /* NUEVO: Fondo claro para logo oscuro */
-    background-color: var(--blanco);
-    padding: 1rem 5%;
+    background: var(--fondo-header);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 1.2rem 5%;
     position: sticky;
     top: 0;
     z-index: 1000;
-    border-bottom: 2px solid var(--fondo-gris-suave);
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+/* Header transparente cuando está sobre el hero */
+.hero-active header {
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom: 1px solid transparent;
+    box-shadow: none;
 }
 
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 /* Estilos para el logo y su enlace */
@@ -69,24 +171,105 @@ nav ul {
 }
 
 nav ul li a {
-    /* NUEVO: Texto oscuro para fondo claro */
-    color: var(--principal);
+    font-family: var(--fuente-texto);
+    color: var(--blanco);
     text-decoration: none;
     margin-left: 20px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    transition: color 0.3s;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.4;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+/* Enlaces de navegación en modo claro */
+[data-theme="light"] nav ul li a {
+    color: #1E293B;
+    background: rgba(30, 41, 59, 0.12);
+    border: 1px solid rgba(30, 41, 59, 0.2);
+}
+
+/* Enlaces cuando el header está sobre el hero */
+.hero-active nav ul li a {
+    color: var(--blanco);
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.hero-active [data-theme="light"] nav ul li a {
+    color: var(--blanco);
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 nav ul li a:hover {
-    color: var(--acento);
+    color: var(--blanco);
+    background: rgba(108, 76, 255, 0.8);
+    transform: translateY(-2px);
+}
+
+nav ul li a:first-child {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="light"] nav ul li a:first-child {
+    background: rgba(30, 41, 59, 0.15);
+    font-weight: 600;
+}
+
+.hero-active nav ul li a:first-child {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.hero-active [data-theme="light"] nav ul li a:first-child {
+    background: rgba(255, 255, 255, 0.25);
+    font-weight: 600;
+}
+
+/* Botón de cambio de tema */
+.theme-toggle {
+    font-family: var(--fuente-texto);
+    background: linear-gradient(135deg, var(--acento), var(--acento-hover));
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--blanco);
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(108, 76, 255, 0.3);
+}
+
+.theme-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(108, 76, 255, 0.5);
+}
+
+.theme-toggle:active {
+    transform: translateY(0);
 }
 
 /* 3. SECCIÓN HERO */
 .hero {
-    background: linear-gradient(rgba(18, 18, 18, 0.8), rgba(74, 20, 140, 0.6)), 
-                url('img/hero-bg.webp') no-repeat center center/cover;
-    height: 80vh;
+     position: relative;
+    background: linear-gradient(135deg, 
+        #FF6B9D 0%,
+        #C239B3 20%,
+        #6C4CFF 40%,
+        #4D8AFF 60%,
+        #4600c9 80%,
+        #0099ff 100%
+    );
+    background-size: 200% 200%;
+    animation: gradientShift 15s ease infinite;
+    height: 90vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -94,8 +277,74 @@ nav ul li a:hover {
     text-align: center;
     color: var(--blanco);
     padding: 0 20px;
+    overflow: hidden;
 }
 
+/* Animación del gradiente */
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Capa oscura para mejor legibilidad en modo claro */
+[data-theme="light"] .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+}
+
+/* En modo oscuro, hacer el gradiente más oscuro */
+[data-theme="dark"] .hero {
+    filter: brightness(0.8);
+}
+
+/* Efectos circulares concéntricos sutiles */
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 600px;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0.05) 30%,
+        transparent 70%
+    );
+    border-radius: 50%;
+    animation: pulse 8s ease-in-out infinite;
+    z-index: 2;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+    50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.8; }
+}
+
+.hero > * {
+    position: relative;
+    z-index: 10;
+}
+
+/* Subtítulo del hero */
+.hero-subtitle {
+    font-family: var(--fuente-texto);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 20px;
+    animation: fadeIn 0.8s ease-out;
+}
 /* Efecto Máquina de Escribir  */
 .typewriter {
     font-family: var(--fuente-mono);
@@ -108,64 +357,186 @@ nav ul li a:hover {
     animation: typing 3.5s steps(30, end), blink-caret .75s step-end infinite;
 }
 
-@keyframes typing { from { width: 0 } to { width: 100% } }
-@keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: var(--acento) } }
+@keyframes fadeInUp {
+    from { 
+        opacity: 0; 
+        transform: translateY(30px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
 
-.hero p {
-    font-size: 1.2rem;
+@keyframes fadeIn { 
+    from { opacity: 0; transform: translateY(20px); } 
+    to { opacity: 1; transform: translateY(0); } 
+}
+
+.hero-description {
+    font-size: 1.3rem;
     max-width: 700px;
-    margin: 20px 0;
+    margin: 20px auto 40px;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    font-weight: 400;
+    line-height: 1.7;
+    animation: fadeIn 1.2s ease-out 0.3s backwards;
+    position: relative;
+    z-index: 10;
 }
 
 /* Botón CTA Neón [cite: 29, 31] */
 .btn-cta {
-    background-color: var(--acento);
-    color: var(--oscuro);
-    padding: 15px 35px;
-    border-radius: 50px;
+    font-family: var(--fuente-texto);
+    background: rgba(11, 19, 36, 0.9);
+    backdrop-filter: blur(10px);
+    color: var(--blanco);
+    padding: 16px 40px;
+    border-radius: 30px;
     text-decoration: none;
-    font-weight: bold;
-    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 1.4;
+    letter-spacing: 0.3px;
     transition: all 0.4s ease;
-    box-shadow: 0 0 10px rgba(0, 255, 136, 0.2);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+    animation: fadeIn 1.4s ease-out 0.6s backwards;
+    z-index: 10;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+
+[data-theme="light"] .hero .btn-cta:hover,
+[data-theme="light"] .registro-form .btn-cta:hover,
+[data-theme="light"] .btn-cta:hover {
+    background: rgba(108, 76, 255, 0.7) !important;
+    box-shadow: 0 12px 40px rgba(108, 76, 255, 0.5) !important;
+}
+
+.btn-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn-cta:hover::before {
+    left: 100%;
+}
+
+[data-theme="dark"] .btn-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6) !important;
+    background: rgba(11, 19, 36, 1) !important;
 }
 
 .btn-cta:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 25px rgba(0, 255, 136, 0.6);
-    background-color: var(--blanco);
+    transform: translateY(-3px);
+}
+
+.btn-cta:active {
+    transform: translateY(-1px);
 }
 
 /* 4. TARJETAS DE OBJETIVOS */
 #nosotros {
     padding: 80px 10%;
     text-align: center;
-    background-color: #f9f9f9;
+    background-color: var(--fondo-seccion-alt);
+    transition: background-color 0.3s ease;
+    position: relative;
+}
+/* Efecto de gradiente sutil en el fondo */
+#nosotros::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: linear-gradient(to bottom, transparent, rgba(108, 76, 255, 0.05));
+    pointer-events: none;
+}
+
+#nosotros h2 {
+    color: var(--principal);
+    margin-bottom: 20px;
+    font-size: 3rem;
+}
+
+#nosotros > p {
+    color: var(--texto-secundario);
+    margin-bottom: 50px;
+    font-size: 1.2rem;
 }
 
 .grid-objetivos {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive [cite: 40] */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
     margin-top: 50px;
+    position: relative;
 }
 
 .card {
-    background: var(--blanco);
-    padding: 30px;
+    background: var(--fondo-cards);
+    padding: 40px 30px;
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    transition: transform 0.3s ease;
-    border-top: 5px solid var(--principal);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+    border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--acento), var(--acento-hover));
+}
+
+/* Números grandes en las tarjetas */
+.card::after {
+    content: attr(data-number);
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--acento);
+    opacity: 0.1;
+    font-family: var(--fuente-titulos);
 }
 
 .card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-15px);
+    box-shadow: 0 20px 50px rgba(108, 76, 255, 0.2);
+    border-color: var(--acento);
 }
 
 .card h3 {
     color: var(--principal);
     margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.card p {
+    color: var(--texto-secundario);
+    line-height: 1.6;
 }
 
 /* 5. RESPONSIVE DESIGN (MOBILE FIRST)
@@ -173,18 +544,31 @@ nav ul li a:hover {
 
    @media (max-width: 768px) {
     .typewriter {
-        font-size: 1.5rem; /* Ajuste para pantallas pequeñas */
-        white-space: normal; /* Permite salto de línea en móvil */
-        border-right: none;
-        animation: none;
+        font-size: 2.5rem;
+        line-height: 1.2;
+    }
+   
+    .hero p {
+        font-size: 1.1rem;
     }
     
     nav ul {
         display: none; /* Aquí podríamos agregar un menú hamburguesa */
     }
 
-    .hero h1 {
-        font-size: 1.8rem;
+    .hero {
+        height: 100vh;
+        padding: 0 20px;
+    }
+    
+    .hero::before {
+        width: 600px;
+        height: 450px;
+    }
+    
+    .hero::after {
+        width: 400px;
+        height: 300px;
     }
 }
 
@@ -196,17 +580,155 @@ footer {
     font-size: 0.8rem;
 }
 
-/* 6. SECCIÓN DE REGISTRO (GROWTH) */
+/* 6. SECCIÓN MURO DE AVISOS - CARRUSEL */
+.avisos-section {
+    padding: 80px 5%;
+    background-color: var(--fondo-body);
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.avisos-section h2 {
+    color: var(--principal);
+    margin-bottom: 15px;
+    font-size: 2.5rem;
+}
+
+.avisos-section > p {
+    color: var(--texto-secundario);
+    margin-bottom: 40px;
+    font-size: 1.1rem;
+}
+
+/* Contenedor del carrusel */
+.carousel-container {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Wrapper del carrusel */
+.carousel-wrapper {
+    flex: 1;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+    position: relative;
+}
+
+/* Track de slides */
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Cada slide */
+.carousel-slide {
+    min-width: 100%;
+    position: relative;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 20px;
+}
+
+/* Botones de navegación */
+.carousel-btn {
+    background: var(--fondo-cards);
+    border: 2px solid var(--acento);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: var(--acento);
+    flex-shrink: 0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-btn:hover {
+    background: var(--acento);
+    color: var(--blanco);
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(108, 76, 255, 0.3);
+}
+
+.carousel-btn:active {
+    transform: scale(0.95);
+}
+
+/* Indicadores */
+.carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--border-color);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+}
+
+.indicator:hover {
+    background: var(--acento);
+    transform: scale(1.2);
+}
+
+.indicator.active {
+    background: var(--acento);
+    width: 35px;
+    border-radius: 6px;
+}
+
+/* Responsive para carrusel */
+@media (max-width: 768px) {
+    .carousel-container {
+        gap: 10px;
+    }
+    
+    .carousel-btn {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .carousel-btn svg {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .avisos-section h2 {
+        font-size: 2rem;
+    }
+}
+
+/* 7. SECCIÓN DE REGISTRO (GROWTH) */
 .registro-section {
     padding: 80px 10%;
     background-color: var(--oscuro);
     color: var(--blanco);
     text-align: center;
+    transition: background-color 0.3s ease;
 }
 
 .registro-section p {
     margin-bottom: 30px;
-    color: var(--texto-gris);
+    color: var(--texto-secundario);
 }
 
 .registro-form {
@@ -301,17 +823,18 @@ footer {
     font-size: 1rem;
 }
 /* =========================================
-   7. SECCIÓN EQUIPO (FACTOR WOW)
+   8 SECCIÓN EQUIPO (FACTOR WOW)
    (Criterio: Mostrar interactividad)
    ========================================= */
 .equipo-section {
     padding: 80px 10%;
     background-color: var(--fondo-gris-suave);
     text-align: center;
+    transition: background-color 0.3s ease;
 }
 
 .equipo-section > p {
-    color: #555;
+    color: var(--texto-secundario);
     margin-bottom: 50px;
 }
 
@@ -323,7 +846,7 @@ footer {
 }
 
 .team-card {
-    background: var(--blanco);
+    background: var(--fondo-cards);
     border-radius: 20px;
     padding: 30px 20px;
     width: 100%;
@@ -379,23 +902,24 @@ footer {
 }
 
 .team-info h3 {
-    color: var(--principal);
+    color: var(--texto-principal);
     margin-bottom: 5px;
     font-size: 1.5rem;
 }
 
 .team-role {
+    font-family: var(--fuente-texto);
     color: var(--acento);
-    font-size: 0.9rem;
+    font-size: 14px;
+    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 15px;
-    font-weight: bold;
 }
 
 .team-info p {
     font-size: 0.95rem;
-    color: #666;
+    color: var(--texto-secundario);
     margin-bottom: 20px;
     line-height: 1.5;
 }
@@ -417,10 +941,12 @@ footer {
 }
 
 .social-btn {
+    font-family: var(--fuente-texto);
     text-decoration: none;
     color: var(--oscuro);
-    font-weight: bold;
-    font-size: 0.85rem;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.4;
     padding: 8px 18px;
     border: 1px solid #ddd;
     border-radius: 20px;
@@ -433,6 +959,362 @@ footer {
     border-color: var(--acento);
 }
 
+/* =========================================
+   8. SECCIÓN MURO - ESTILO PADLET CON GRADIENTE
+   ========================================= */
+.muro-section {
+    padding: 80px 10%;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, 
+        #FF6B9D 0%,
+        #C239B3 20%,
+        #6C4CFF 40%,
+        #4D8AFF 60%,
+        #4600c9 80%,
+        #0099ff 100%
+    );
+    background-size: 200% 200%;
+    animation: gradientShift 15s ease infinite;
+}
+
+/* Efectos circulares en el muro */
+.muro-section::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1000px;
+    height: 800px;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(255, 255, 255, 0.15) 0%,
+        rgba(255, 255, 255, 0.08) 30%,
+        transparent 70%
+    );
+    border-radius: 50%;
+    animation: pulse 10s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.muro-section::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    height: 550px;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0.05) 40%,
+        transparent 70%
+    );
+    border-radius: 50%;
+    animation: pulse 8s ease-in-out infinite reverse;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Overlay para modo claro */
+[data-theme="light"] .muro-section::before {
+    background: radial-gradient(
+        ellipse at center,
+        rgba(0, 0, 0, 0.1) 0%,
+        rgba(0, 0, 0, 0.05) 30%,
+        transparent 70%
+    );
+}
+
+/* En modo oscuro, atenuar el gradiente */
+[data-theme="dark"] .muro-section {
+    filter: brightness(0.85);
+}
+
+.muro-section > * {
+    position: relative;
+    z-index: 1;
+}
+
+.muro-section h2 {
+    margin-bottom: 10px;
+    color: #FFFFFF;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.muro-section > p {
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+    margin-bottom: 50px;
+}
+
+.muro-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Formulario de nueva publicación */
+.nueva-publicacion {
+    background: var(--fondo-cards);
+    padding: 30px;
+    border-radius: 20px;
+    margin-bottom: 50px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    text-align: left;
+    border: 2px solid var(--acento);
+    transition: all 0.3s ease;
+}
+
+.nueva-publicacion h3 {
+    margin-bottom: 20px;
+    color: var(--texto-principal);
+    font-size: 24px;
+}
+
+.publicacion-form .input-group {
+    margin-bottom: 20px;
+}
+
+.publicacion-form input,
+.publicacion-form textarea {
+    font-family: var(--fuente-texto);
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background-color: var(--fondo-body);
+    color: var(--texto-principal);
+    font-size: 16px;
+    font-weight: 400;
+    transition: all 0.3s ease;
+    resize: vertical;
+}
+
+.publicacion-form input:focus,
+.publicacion-form textarea:focus {
+    outline: none;
+    border-color: var(--acento);
+    box-shadow: 0 0 10px rgba(108, 76, 255, 0.2);
+}
+
+.btn-publicar {
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* Botón publicar en modo claro con color púrpura */
+[data-theme="light"] .muro-section .btn-publicar,
+[data-theme="light"] .btn-publicar {
+    background: rgba(108, 76, 255, 0.7) !important;
+    box-shadow: 0 8px 30px rgba(108, 76, 255, 0.4) !important;
+    border-color: rgba(108, 76, 255, 0.2) !important;
+}
+
+[data-theme="light"] .muro-section .btn-publicar:hover,
+[data-theme="light"] .btn-publicar:hover {
+    background: rgba(108, 76, 255, 0.9) !important;
+    box-shadow: 0 12px 40px rgba(108, 76, 255, 0.6) !important;
+}
+
+/* Input de archivo personalizado */
+.file-upload-label {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--fondo-body);
+    border: 2px dashed var(--acento);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    width: 100%;
+    font-weight: 500;
+    color: var(--texto-principal);
+}
+
+.file-upload-label:hover {
+    background-color: var(--acento);
+    color: var(--blanco);
+    border-style: solid;
+}
+
+.file-input {
+    display: none;
+}
+
+/* Preview de imagen */
+.preview-container {
+    margin-top: 15px;
+}
+
+.image-preview {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 300px;
+}
+
+.image-preview img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.remove-image {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 0, 0, 0.8);
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.remove-image:hover {
+    background: rgba(255, 0, 0, 1);
+    transform: scale(1.1);
+}
+
+/* Imagen en la publicación */
+.post-image {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    margin: 10px 0;
+    object-fit: cover;
+    max-height: 300px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.post-image:hover {
+    transform: scale(1.02);
+    cursor: pointer;
+}
+
+/* Grid de publicaciones tipo Padlet */
+.grid-publicaciones {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+/* Tarjeta de publicación */
+.post-card {
+    background: var(--fondo-cards);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    text-align: left;
+    border-left: 4px solid var(--acento);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.post-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(108, 76, 255, 0.15);
+}
+
+/* Header de la publicación */
+.post-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.post-avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--acento), var(--acento-hover));
+    color: var(--blanco);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.post-info h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--texto-principal);
+    margin: 0;
+}
+
+.post-date {
+    font-family: var(--fuente-texto);
+    font-size: 12px;
+    color: var(--texto-secundario);
+}
+
+/* Contenido de la publicación */
+.post-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--texto-principal);
+    margin: 0;
+}
+
+.post-content {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--texto-secundario);
+    margin: 0;
+}
+
+/* Tags de la publicación */
+.post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 5px;
+}
+
+.tag {
+    font-family: var(--fuente-texto);
+    background: var(--acento);
+    color: var(--blanco);
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.tag:hover {
+    background: var(--acento-hover);
+    transform: scale(1.05);
+}
+
+/* Responsive para muro */
+@media (max-width: 768px) {
+    .grid-publicaciones {
+        grid-template-columns: 1fr;
+    }
+    
+    .nueva-publicacion {
+        padding: 20px;
+    }
+}
 
 /* ---- ESTILO PARA ALERTAS ----*/
 

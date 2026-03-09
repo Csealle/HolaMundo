@@ -1,0 +1,267 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muro - Hello World FES Aragón</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+
+    <header>
+        <nav>
+             <a href="{% url 'index' %}" class="logo-link">
+                <img src="{% static 'img/logoHelloWorld.jpeg' %}" alt="Logo Club Hello World FES Aragón" class="logo-img">
+             </a>
+           <ul>
+            <li><a href="{% url 'index' %}#inicio">Inicio</a></li>
+            <li><a href="{% url 'index' %}#nosotros">¿Quiénes somos?</a></li>
+            <li><a href="{% url 'index' %}#avisos">Avisos</a></li>
+            <li><a href="{% url 'muro' %}">Muro</a></li>
+            <li><a href="{% url 'index' %}#registro">Únete</a></li>
+           </ul>
+           <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+               <span id="themeIcon">🌙</span>
+           </button>
+        </nav>
+    </header>
+
+    <main>
+        <section id="muro" class="muro-section">
+            <h2>Muro de Experiencias</h2>
+            <p>Comparte tus experiencias, proyectos y momentos especiales del club</p>
+            
+            <div class="muro-container">
+                <!-- Formulario para nueva publicación -->
+                <div class="nueva-publicacion">
+                    <h3>Comparte tu experiencia</h3>
+                    <form class="publicacion-form">
+                        <div class="input-group">
+                            <input type="text" id="titulo-post" placeholder="Título de tu publicación" required>
+                        </div>
+                        <div class="input-group">
+                            <textarea id="contenido-post" placeholder="Cuéntanos tu experiencia..." rows="4" required></textarea>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="autor-post" placeholder="Tu nombre" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="imagen-post" class="file-upload-label">
+                                📷 Agregar imagen (opcional)
+                            </label>
+                            <input type="file" id="imagen-post" accept="image/*" class="file-input">
+                            <div id="preview-container" class="preview-container"></div>
+                        </div>
+                        <button type="submit" class="btn-cta btn-publicar">Publicar</button>
+                    </form>
+                </div>
+
+                <!-- Grid de publicaciones -->
+                <div class="grid-publicaciones">
+                    <!-- Publicación 1 -->
+                    <article class="post-card">
+                        <div class="post-header">
+                            <div class="post-avatar">M</div>
+                            <div class="post-info">
+                                <h4>María González</h4>
+                                <span class="post-date">15 de febrero, 2026</span>
+                            </div>
+                        </div>
+                        <h3 class="post-title">Hackathon UNAM 2026</h3>
+                        <p class="post-content">¡Increíble experiencia en el Hackathon! Desarrollamos una app de IA para ayudar a estudiantes con sus horarios. Ganamos el 2do lugar 🏆</p>
+                        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600&h=400&fit=crop" alt="Hackathon" class="post-image">
+                        <div class="post-tags">
+                            <span class="tag">Hackathon</span>
+                            <span class="tag">IA</span>
+                        </div>
+                    </article>
+
+                    <!-- Publicación 2 -->
+                    <article class="post-card">
+                        <div class="post-header">
+                            <div class="post-avatar">C</div>
+                            <div class="post-info">
+                                <h4>Carlos Ramírez</h4>
+                                <span class="post-date">10 de febrero, 2026</span>
+                            </div>
+                        </div>
+                        <h3 class="post-title">Taller de Machine Learning</h3>
+                        <p class="post-content">El taller de ML estuvo espectacular. Aprendimos a crear modelos de clasificación con TensorFlow. ¡Ya quiero aplicarlo en mi proyecto!</p>
+                        <div class="post-tags">
+                            <span class="tag">ML</span>
+                            <span class="tag">Taller</span>
+                        </div>
+                    </article>
+
+                    <!-- Publicación 3 -->
+                    <article class="post-card">
+                        <div class="post-header">
+                            <div class="post-avatar">A</div>
+                            <div class="post-info">
+                                <h4>Ana Hernández</h4>
+                                <span class="post-date">20 de enero, 2026</span>
+                            </div>
+                        </div>
+                        <h3 class="post-title">Proyecto Open Source</h3>
+                        <p class="post-content">Iniciamos nuestro primer proyecto open source del club. Una librería de componentes para React. ¡Todos están invitados a contribuir!</p>
+                        <div class="post-tags">
+                            <span class="tag">Open Source</span>
+                            <span class="tag">React</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Club Hello World - FES Aragón, UNAM</p>
+    </footer>
+
+    <script>
+        // Sistema de cambio de tema
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const html = document.documentElement;
+
+        // Cargar tema guardado o detectar preferencia del sistema
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const currentTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+
+        // Aplicar tema inicial siempre
+        html.setAttribute('data-theme', currentTheme);
+        
+        if (currentTheme === 'dark') {
+            themeIcon.textContent = '☀️';
+        } else {
+            themeIcon.textContent = '🌙';
+        }
+
+        // Función para cambiar el tema
+        function toggleTheme() {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            // Cambiar icono
+            themeIcon.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+        }
+
+        // Event listener para el botón
+        themeToggle.addEventListener('click', toggleTheme);
+
+        // Detectar si estamos en la sección muro para hacer el header transparente
+        const muroSection = document.querySelector('.muro-section');
+        
+        function checkMuroVisibility() {
+            if (muroSection) {
+                const muroRect = muroSection.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                
+                // Si el muro está visible (cualquier parte del muro está en la pantalla)
+                // O si estamos en la parte superior de la página
+                if ((muroRect.top < windowHeight && muroRect.bottom > 0) || window.scrollY < 100) {
+                    document.body.classList.add('hero-active');
+                } else {
+                    document.body.classList.remove('hero-active');
+                }
+            }
+        }
+        
+        // Verificar al cargar la página y al hacer scroll
+        checkMuroVisibility();
+        window.addEventListener('scroll', checkMuroVisibility);
+        window.addEventListener('resize', checkMuroVisibility);
+
+        // Preview de imagen
+        const imagenInput = document.getElementById('imagen-post');
+        const previewContainer = document.getElementById('preview-container');
+        let imagenSeleccionada = null;
+
+        imagenInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imagenSeleccionada = e.target.result;
+                    previewContainer.innerHTML = `
+                        <div class="image-preview">
+                            <img src="${e.target.result}" alt="Preview">
+                            <button type="button" class="remove-image" onclick="removeImage()">✕</button>
+                        </div>
+                    `;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Función para remover imagen
+        window.removeImage = function() {
+            imagenSeleccionada = null;
+            imagenInput.value = '';
+            previewContainer.innerHTML = '';
+        };
+
+        // Manejo del formulario de publicaciones
+        const publicacionForm = document.querySelector('.publicacion-form');
+        if (publicacionForm) {
+            publicacionForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Obtener valores del formulario
+                const titulo = document.getElementById('titulo-post').value;
+                const contenido = document.getElementById('contenido-post').value;
+                const autor = document.getElementById('autor-post').value;
+                
+                // Crear nueva tarjeta de publicación
+                const gridPublicaciones = document.querySelector('.grid-publicaciones');
+                const nuevaPublicacion = document.createElement('article');
+                nuevaPublicacion.className = 'post-card';
+                nuevaPublicacion.style.animation = 'fadeIn 0.5s ease';
+                
+                const inicialAutor = autor.charAt(0).toUpperCase();
+                const fechaActual = new Date().toLocaleDateString('es-MX', { 
+                    day: 'numeric', 
+                    month: 'long', 
+                    year: 'numeric' 
+                });
+                
+                nuevaPublicacion.innerHTML = `
+                    <div class="post-header">
+                        <div class="post-avatar">${inicialAutor}</div>
+                        <div class="post-info">
+                            <h4>${autor}</h4>
+                            <span class="post-date">${fechaActual}</span>
+                        </div>
+                    </div>
+                    <h3 class="post-title">${titulo}</h3>
+                    <p class="post-content">${contenido}</p>
+                    ${imagenSeleccionada ? `<img src="${imagenSeleccionada}" alt="${titulo}" class="post-image">` : ''}
+                    <div class="post-tags">
+                        <span class="tag">Nueva</span>
+                    </div>
+                `;
+                
+                // Insertar al inicio del grid
+                gridPublicaciones.insertBefore(nuevaPublicacion, gridPublicaciones.firstChild);
+                
+                // Limpiar formulario
+                publicacionForm.reset();
+                previewContainer.innerHTML = '';
+                imagenSeleccionada = null;
+                
+                // Mostrar mensaje de éxito
+                alert('¡Publicación creada exitosamente!');
+            });
+        }
+    </script>
+
+</body>
+</html>
