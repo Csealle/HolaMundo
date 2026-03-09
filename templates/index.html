@@ -11,9 +11,9 @@
 
     <header>
         <nav>
-             <a href="index.html" class="logo-link">
+             <a href="{% url 'index' %}" class="logo-link">
                 <img src="{% static 'img/logoHelloWorld.jpeg' %}" alt="Logo Club Hello World FES Aragón" class="logo-img">
-             </a href="index.html" class="logo-link">
+             </a>
            
            <!-- Botón hamburguesa para móvil -->
            <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
@@ -23,11 +23,11 @@
            </button>
            
            <ul class="nav-menu" id="navMenu">
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#nosotros">¿Quiénes somos?</a></li>
-            <li><a href="#avisos">Avisos</a></li>
+            <li><a href="{% url 'index' %}">Inicio</a></li>
+            <li><a href="{% url 'index' %}#nosotros">¿Quiénes somos?</a></li>
+            <li><a href="{% url 'index' %}#avisos">Avisos</a></li>
             <li><a href="{% url 'muro' %}">Muro</a></li>
-            <li><a href="#registro">Únete</a></li>
+            <li><a href="{% url 'index' %}#registro">Únete</a></li>
            </ul>
            <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
                <span id="themeIcon">🌙</span>
