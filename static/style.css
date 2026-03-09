@@ -304,6 +304,38 @@ nav ul li a:first-child {
     transform: translateY(0);
 }
 
+/* Botón hamburguesa (oculto por defecto en desktop) */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    z-index: 1001;
+}
+
+.menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background: var(--texto-principal);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
 /* 3. SECCIÓN HERO */
 .hero {
      position: relative;
@@ -591,6 +623,53 @@ nav ul li a:first-child {
    Adaptabilidad total a móviles [cite: 40, 46]) */
 
    @media (max-width: 768px) {
+    /* Mostrar botón hamburguesa */
+    .menu-toggle {
+        display: flex;
+    }
+    
+    /* Ocultar menú de navegación por defecto */
+    .nav-menu {
+        position: fixed;
+        top: 70px;
+        right: -100%;
+        width: 80%;
+        max-width: 300px;
+        background: var(--fondo-cards);
+        flex-direction: column;
+        padding: 20px 0;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+        transition: right 0.3s ease;
+        z-index: 999;
+        border-radius: 15px 0 0 15px;
+    }
+    
+    /* Mostrar menú cuando está activo */
+    .nav-menu.active {
+        right: 0;
+    }
+    
+    /* Estilos de enlaces en móvil */
+    .nav-menu li {
+        margin: 0;
+        width: 100%;
+    }
+    
+    .nav-menu li a {
+        display: block;
+        width: 100%;
+        margin: 0;
+        padding: 15px 25px;
+        border-radius: 0;
+        text-align: left;
+        border: none;
+        border-bottom: 1px solid var(--border-color);
+    }
+    
+    .nav-menu li:last-child a {
+        border-bottom: none;
+    }
+    
     .typewriter {
         font-size: 2.5rem;
         line-height: 1.2;
@@ -598,10 +677,6 @@ nav ul li a:first-child {
    
     .hero p {
         font-size: 1.1rem;
-    }
-    
-    nav ul {
-        display: none; /* Aquí podríamos agregar un menú hamburguesa */
     }
 
     .hero {
@@ -941,23 +1016,6 @@ footer {
     margin-bottom: 20px;
 }
 
-/* Diseño del Avatar (Mientras no hay foto) */
-.team-avatar {
-    width: 110px;
-    height: 110px;
-    border-radius: 50%;
-    background-color: var(--oscuro);
-    color: var(--acento);
-    font-size: 3rem;
-    font-weight: bold;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    border: 4px solid var(--blanco);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
 
 /* Imagen de perfil real */
 .team-avatar img {

@@ -14,7 +14,15 @@
              <a href="index.html" class="logo-link">
                 <img src="{% static 'img/logoHelloWorld.jpeg' %}" alt="Logo Club Hello World FES Aragón" class="logo-img">
              </a href="index.html" class="logo-link">
-           <ul>
+           
+           <!-- Botón hamburguesa para móvil -->
+           <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+               <span></span>
+               <span></span>
+               <span></span>
+           </button>
+           
+           <ul class="nav-menu" id="navMenu">
             <li><a href="#inicio">Inicio</a></li>
             <li><a href="#nosotros">¿Quiénes somos?</a></li>
             <li><a href="#avisos">Avisos</a></li>
@@ -208,7 +216,7 @@
             <p>Ser un referente nacional e internacional en competencias tecnológicas.</p>
 
             <div class="grid-objetivos">
-                <div class="card">
+                <div class="card" >
                     <h3>Habilidades Técnicas </h3>
                     <p>Talleres de IA, desarrollo de software y diseño.</p>
                 </div>
@@ -318,6 +326,34 @@
     <script>
         // Esto asegura que el DOM esté listo
         document.addEventListener('DOMContentLoaded', function() {
+            
+            // ========== MENÚ HAMBURGUESA ==========
+            const menuToggle = document.getElementById('menuToggle');
+            const navMenu = document.getElementById('navMenu');
+            const navLinks = navMenu.querySelectorAll('a');
+            
+            // Toggle del menú
+            menuToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('active');
+                menuToggle.classList.toggle('active');
+            });
+            
+            // Cerrar menú al hacer click en un enlace
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    navMenu.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                });
+            });
+            
+            // Cerrar menú al hacer click fuera
+            document.addEventListener('click', function(event) {
+                const isClickInsideNav = navMenu.contains(event.target) || menuToggle.contains(event.target);
+                if (!isClickInsideNav && navMenu.classList.contains('active')) {
+                    navMenu.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                }
+            });
             
             const carreraSelect = document.getElementById('id_carrera');
             const divOtra = document.getElementById('div-otra-carrera');
